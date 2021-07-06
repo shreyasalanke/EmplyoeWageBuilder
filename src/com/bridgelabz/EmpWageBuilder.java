@@ -12,21 +12,30 @@ public class EmpWageBuilder {
 	    public static final int NUM_OF_WORKING_DAYS = 20;
 		
 	    public static void main(String[] args) {
-	    	 int dailyWage;
-	         double empCheck=Math.floor(Math.random()*10)%3;
-	         switch ((int)empCheck) {
-	             case IS_EMP_PRESENT_FULLTIME:
-	                 System.out.println("employee is present");
-	                 dailyWage=(EMP_WAGE_PER_HOUR*FULL_WORK_HOUR);
-	                 System.out.println("salary is:"+dailyWage);
+	    	 int empHrs=0;
+	         int dailyWage;
+	         int totalWage = 0;
+	         int totalWorkingHrs = 0;
+	         for (int i=1;i<NUM_OF_WORKING_DAYS;i++){
+	             double empCheck=Math.floor(Math.random()*10)%3;
+	             switch ((int)empCheck) {
+	                 case IS_EMP_PRESENT_FULLTIME:
+	                     empHrs=8;
+	                     break;
+	                 case IS_EMP_PRESENT_PARTTIME:
+	                     empHrs=4;
+	                     break;
+	                 default:
+	                     empHrs=0;
+	             }
+	             if (totalWorkingHrs==100 || i==20)
+	             {
 	                 break;
-	             case IS_EMP_PRESENT_PARTTIME:
-	                 dailyWage=(EMP_WAGE_PER_HOUR*PART_WORK_HOUR);
-	                 System.out.println("salary is :"+dailyWage);
-	                 System.out.println("employee is part time present");
-	                 break;
-	             default:
-	                 System.out.println("when employee is absent for the day his salary is zero");
+	             }
+	             dailyWage=(EMP_WAGE_PER_HOUR*empHrs);
+	             totalWage+=dailyWage;
+	             totalWorkingHrs+=empHrs;
 	         }
+	         System.out.println("Salary per month is:"+totalWage);
 	     }
 	 }

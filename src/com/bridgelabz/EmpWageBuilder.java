@@ -4,30 +4,32 @@ import java.util.Random;
 
 public class EmpWageBuilder {
 	
-	
-	public static void main(String[] args) {
+	    public static final int IS_EMP_PRESENT_FULLTIME = 1;
+	    public static final int IS_EMP_PRESENT_PARTTIME = 2;
+	    public static final int EMP_WAGE_PER_HOUR = 20;
+	    public static final int FULL_WORK_HOUR = 8;
+	    public static final int PART_WORK_HOUR = 4;
+	    public static final int NUM_OF_WORKING_DAYS = 20;
 		
-		int IS_EMP_PRESENT = 1;
-		int EMP_WAGE_PER_HOUR = 20;
-		int FULL_DAY_HOUR = 8;
-		
-		double empCheck =Math.floor(Math.random()*10)%2;
-		
-		if (empCheck == IS_EMP_PRESENT )
-		{
-			System.out.println("emp is prsent");
-			int dailyEmpWage = EMP_WAGE_PER_HOUR * EMP_WAGE_PER_HOUR;
-			System.out.println("emp wage is:"+dailyEmpWage);
-		}
-		else
-		{
-			System.out.println("emp absent");
-			int dailyEmpWage = 0;
-			
-				
-		}
-		
-			
-	}	
-
-}
+	    public static void main(String[] args) {
+	    	int empHrs=0;
+	        int dailyWage;
+	        int totalWage = 0;
+	        for (int i=1;i<NUM_OF_WORKING_DAYS;i++){
+	            double empCheck=Math.floor(Math.random()*10)%3;
+	            switch ((int)empCheck) {
+	                case IS_EMP_PRESENT_FULLTIME:
+	                    empHrs=8;
+	                    break;
+	                case IS_EMP_PRESENT_PARTTIME:
+	                    empHrs=4;
+	                    break;
+	                default:
+	                    empHrs=0;
+	            }
+	            dailyWage=(EMP_WAGE_PER_HOUR*empHrs);
+	            totalWage+=dailyWage;
+	        }
+	        System.out.println("Salary per month is:"+totalWage);
+	    }
+	}
